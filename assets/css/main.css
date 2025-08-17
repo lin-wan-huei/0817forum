@@ -2,6 +2,8 @@
 body,html{height:auto;width:100%;font-family:'Jost','Noto Sans TC',sans-serif;font-weight:400;font-size: 16px;line-height:1.8;color:#000;position:relative;padding:0;margin:0;overflow-x:hidden;letter-spacing: 0.03em;text-align:justify;font-synthesis:none;}
 body.modal-open,html.modal-open{overflow:hidden;padding-right:0!important}
 body{padding-top: var(--headerH);}
+body::after {content: '';position: fixed;top: 0;left: 0;width: 100%;height: 100%;background:#fff;z-index: 9999;pointer-events: none;opacity: 0;-webkit-transition: 1s cubic-bezier(0.42, 0, 0.58, 1);transition: 1s cubic-bezier(0.42, 0, 0.58, 1);}
+body.page-fade::after {opacity: 1;}
 @media screen and (max-width: 768px) {
   body,html{font-size:14px}
 }

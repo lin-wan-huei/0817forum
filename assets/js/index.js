@@ -2,9 +2,83 @@
 // 初始化所有功能
 initializeApp();
 
+// 立即執行圖片預載入（在DOM解析之前）
+document.addEventListener('DOMContentLoaded', function() {
+  forcePreloadImages();
+});
+
+// 影片載入處理
+function handleVideoLoading() {
+  const video = document.getElementById('kvVideo');
+  const placeholder = document.getElementById('kvPlaceholder');
+  
+  if (!video || !placeholder) return;
+  
+  // 設定影片載入事件
+  video.addEventListener('loadeddata', function() {
+    // 影片可以播放時
+    video.classList.add('loaded');
+    placeholder.classList.add('hidden');
+    
+    // 延遲移除占位元素以確保平滑過渡
+    setTimeout(() => {
+      placeholder.style.display = 'none';
+    }, 500);
+  });
+  
+  // 如果影片載入失敗，保持占位圖片顯示
+  video.addEventListener('error', function() {
+    console.warn('影片載入失敗，顯示占位圖片');
+    // 隱藏載入動畫但保持占位圖片
+    const spinner = placeholder.querySelector('.loading-spinner');
+    if (spinner) {
+      spinner.style.display = 'none';
+    }
+  });
+  
+  // 檢查影片是否已經載入完成（處理快取情況）
+  if (video.readyState >= 3) {
+    video.classList.add('loaded');
+    placeholder.classList.add('hidden');
+    setTimeout(() => {
+      placeholder.style.display = 'none';
+    }, 500);
+  }
+}
+
+// 強制預載入關鍵圖片
+function forcePreloadImages() {
+  const criticalImages = [
+    'images/dec-cl-sub.svg',
+    'images/dec-cl-mj.svg', 
+    'images/deco_circle.png',
+    'images/bg.svg',
+    'images/fixed_btn.png'
+  ];
+  
+  criticalImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    // 強制載入
+    img.onload = function() {
+      console.log(`圖片已載入: ${src}`);
+    };
+    img.onerror = function() {
+      console.warn(`圖片載入失敗: ${src}`);
+    };
+  });
+}
+
 function initializeApp() {
   'use strict';
+  
+  // 立即開始預載入關鍵圖片
+  forcePreloadImages();
+  
   $(function () {
+    // 初始化影片載入處理
+    handleVideoLoading();
+    
     // 漢堡選單功能
     $('.hamburger').on('click', function (e) {
       e.preventDefault();
