@@ -137,8 +137,8 @@ button:active,button:focus,button:hover,button:hover:active{outline:0;text-decor
 
 .mb_menu .navbar{pointer-events: none;justify-content: center;font-size:2em;text-align:center;padding:2em 20px}
 .mb_menu .menu{list-style:none;padding:0;margin:0}
-.mb_menu .menu .nav-link{padding:0}
-.mb_menu li{opacity:1;margin:.3em 0;position:relative;display:none}
+.mb_menu .menu .nav-link{padding: .5rem 0;}
+.mb_menu li{opacity:1;margin: 1rem 0;position:relative;display:none}
 .mb_menu li:after,.mb_menu li:before{content:'';display:block;position:absolute;position:absolute;right:0;bottom:0;width:100%;height:1px;background:#ededed;-webkit-transition:var(--transition);transition:var(--transition)}
 .mb_menu li:after{position:absolute;left:0;bottom:0;width:0;background:var(--mjColor)}
 .mb_menu li:hover:before{width:0}

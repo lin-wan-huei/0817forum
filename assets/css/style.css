@@ -336,7 +336,7 @@ a:hover .l-picBx img{transform: scale(1.05);}
 
   /* 專刊文章 頁籤 */
   .rowLis{grid-template-columns: repeat(1,1fr);}
-  .articleCard,.readCard,.videoCard{display: block;max-width: 320px;margin: 0 auto;}
+  .articleCard,.readCard,.videoCard{display: block;width: 100%;max-width: 320px;margin: 0 auto;}
   /* .noData:not(:first-child){display:none} */
 
   /* 輪播 */
